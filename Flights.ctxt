@@ -1,0 +1,12 @@
+#BlueJ class context
+comment0.target=Flights
+comment1.params=code\ origin\ destination\ date\ departureTime\ arrivalTime\ airline\ price\ type
+comment1.target=Flights(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ double,\ java.lang.String)
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Flights\r\n
+comment2.params=
+comment2.target=java.lang.String\ getDate()
+comment3.params=
+comment3.target=java.lang.String\ getOrigin()
+comment4.params=
+comment4.target=java.lang.String\ getDetails()
+numComments=5
