@@ -1,7 +1,12 @@
-
+/**
+ * Handles flight data.
+ *
+ * @author A K M NAHARUL HAYAT
+ * @version  1.0
+ */
 public class Flights
 {
-    // instance variables - replace the example below with your own
+    /** Data of the flight */
     private final String code;
     private final String origin;
     private final String destination;
@@ -14,6 +19,7 @@ public class Flights
 
     /**
      * Constructor for objects of class Flights
+     * @param all Data for a flight
      */
     public Flights(String code, String origin, String destination,String date, String departureTime, String arrivalTime, String airline, double price,String type)
     {
@@ -28,14 +34,26 @@ public class Flights
        this.price = price;
        this.type = type;
     }
+    /** 
+     *  Get the date of a flight
+     *  @return     Date of the flight
+     */
     public String getDate()
     {
         return date;
     }
+    /** 
+     *  Get origin of the flight
+     *  @return     Origin of flight
+     */
     public String getOrigin()
     {
         return origin;
     }
+    /** 
+     *  Get details of a flight
+     *  @return     Deatils of the file as a string with description
+     */
     public String getDetails() 
     {
         return "flight code = "  +code + 
