@@ -3,20 +3,26 @@ import java.nio.file.*;
 import java.util.function.Function;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 /**
- * Write a description of class FlightReader here.
+ * Handles reading flights from data file and flight operations.
  *
- * @A K M NAHARUL HAYAT
- * @1 (a version number or a date)
+ * @author A K M NAHARUL HAYAT
+ * @version  1.0
  */
 public class FlightReader
-{
+{   
+    /** How many fields there are in the CSV */
     private static final int NUMBER_OF_FIELDS = 9;
+    /** Indexes of different column names */
     private static final int CODE = 0,ORIGIN = 1,DESTINATION = 2,DATE = 3,DEPARTURETIME = 4,ARRIVALTIME = 5,AIRLINE = 6,PRICE = 7,TYPE = 8;
+    /** Lit of flights */
     private List<Flights> flights;
+    /** Name of the CSV file*/
     private String dataFileName = "Flights.csv";
     /**
      * Constructor for objects of class FlightReader
+     * @param fileName The name of the data file
      */
     public FlightReader(String fileName)
     {
@@ -24,12 +30,19 @@ public class FlightReader
        flights = new ArrayList<Flights>();
        flights.addAll(getFlights(fileName));
     }
+    /** 
+     *  Add entries to the list of flights
+     */
     public FlightReader()
     {
         // initialise instance variables
        flights = new ArrayList<Flights>();
        flights.addAll(getFlights(dataFileName));
     }
+    /** 
+     *  Get flights from the file
+     *  @param filename The name of the data file
+     */
     public ArrayList<Flights> getFlights(String filename)
     {
         Function<String, Flights> createFlights = 
@@ -60,22 +73,42 @@ public class FlightReader
                        };
         ArrayList<Flights> flights;
         try {
-            flights = Files.lines(Paths.get(filename)).filter(record -> record.length() > 0 && record.charAt(0) != '#').map(createFlights).filter(x -> x != null).collect(Collectors.toCollection(ArrayList::new));
+            flights = Files.lines(Paths.get(filename))      // Get file
+                           .filter(record -> record.length() > 0 && record.charAt(0) != '#')        //  Check if line contains data
+                           .map(createFlights)      // Create object
+                           .filter(x -> x != null)      // Filter null objects
+                           .collect(Collectors.toCollection(ArrayList::new));       // Initiate ArrayList with objects
         }
         catch(IOException e) {
             System.out.println("Unable to open " + filename);
             flights = new ArrayList<>();
         }
+           
         return flights;
     }
+    /** 
+     *  Prints all records from data file
+     */
     public void printAllRecord()
     {
         flights.forEach(flight -> System.out.println(flight.getDetails()));
     }
+    /** 
+     *  Searches for a flight
+     *  @param airport Name of the airport
+     *  @param date The date of the searched item
+     */
     public void searchFlights(String airportName, String date)
     {
-        flights.stream().filter(flight -> (airportName.equals(flight.getOrigin())  && dateComparison(date,flight.getDate()))).forEach(flight -> System.out.println(flight.getDetails()));        
+        flights.stream()        // Initiate stream
+               .filter(flight -> (airportName.equals(flight.getOrigin())  && dateComparison(date,flight.getDate())))        // Filter flights for conditions
+               .forEach(flight -> System.out.println(flight.getDetails()));         // Print all that match required     
     }
+    /** 
+     *  Check if two dates have matching days
+     *  @param  dateInput Date from input
+     *  @param  acrualDate Date to compare with
+     */
     private boolean dateComparison(String dateInput,String actualDate)
     {
         String[] literals = dateInput.split("");
