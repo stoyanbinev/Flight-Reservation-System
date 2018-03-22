@@ -42,7 +42,7 @@ public class FlightReader
     /** 
      *  Get flights from the file
      *  @param filename The name of the data file
-     *  @return ArrayList   List of flights
+     *  @return List of flights
      */
     public ArrayList<Flights> getFlights(String filename)
     {
@@ -108,8 +108,8 @@ public class FlightReader
     /** 
      *  Check if two dates have matching days
      *  @param  dateInput Date from input
-     *  @param  acrualDate Date to compare with
-     *  @return boolean Result of comparision
+     *  @param  actualDate Date to compare with
+     *  @return Result of comparision
      */
     private boolean dateComparison(String dateInput,String actualDate)
     {
