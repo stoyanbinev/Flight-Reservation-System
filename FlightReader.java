@@ -16,7 +16,7 @@ public class FlightReader
     private static final int NUMBER_OF_FIELDS = 9;
     /** Indexes of different column names */
     private static final int CODE = 0,ORIGIN = 1,DESTINATION = 2,DATE = 3,DEPARTURETIME = 4,ARRIVALTIME = 5,AIRLINE = 6,PRICE = 7,TYPE = 8;
-    /** Lit of flights */
+    /** List of flights */
     private List<Flights> flights;
     /** Name of the CSV file*/
     private String dataFileName = "Flights.csv";
@@ -42,6 +42,7 @@ public class FlightReader
     /** 
      *  Get flights from the file
      *  @param filename The name of the data file
+     *  @return ArrayList   List of flights
      */
     public ArrayList<Flights> getFlights(String filename)
     {
@@ -108,6 +109,7 @@ public class FlightReader
      *  Check if two dates have matching days
      *  @param  dateInput Date from input
      *  @param  acrualDate Date to compare with
+     *  @return boolean Result of comparision
      */
     private boolean dateComparison(String dateInput,String actualDate)
     {
